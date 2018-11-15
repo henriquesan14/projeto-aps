@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <title>Login</title>
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-login.css}"/>
+</head>
+<body>
+<div id="form-container">
+    <div class="panel" id="form-box">
+        <form th:action="@{/login}" method="post">
+            <img th:src="@{/img/user.png}"/>
+            <div class="form-group">
+                <label class="sr-only" >Usuário</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" name="username"  class="form-control" placeholder="Seu login de usuário" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" >Senha</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="password"  class="form-control" placeholder="Digite sua senha" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Entrar" class="btn btn-success form-control" />
+            </div>
+        </form>
+
+
+        <div th:if="${param.logout}">
+            <div class="alert alert-success">Desconectado</div>
+        </div>
+
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">Usuário/senha inválido(s)</div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
