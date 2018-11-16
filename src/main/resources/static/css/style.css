@@ -24,9 +24,7 @@ nav.navbar{
     margin-left: 10px;
 }
 
-.nome{
-    color:#fff;
-}
+
 
 .menu {
     width: 0px;
@@ -113,7 +111,7 @@ nav.navbar{
 
 
 .panel-info > .panel-heading {
-background: #edeaef; color: #5c5a5a;  }
+background: #02abe4; color: #fff;  }
 
 .panel-info > .panel-heading > .panel-title {
     font-weight:bold;  }
