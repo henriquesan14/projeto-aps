@@ -1,7 +1,7 @@
 #form-container {
     width: 100vw;
     height: 100vh;
-    background: #222;
+    background: #16202a;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,4 +22,15 @@
     width: 90px;
     height: 90px;
     margin: 10px auto;
+}
+
+.btn.btn-success{
+    background-color:#26323e;
+    color:#fff;
+    border:none;
+}
+
+.btn.btn-success:hover{
+    background-color:#15212a;
+
 }

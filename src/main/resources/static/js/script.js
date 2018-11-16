@@ -1,13 +1,13 @@
 $(document).ready(function () {
 
-if($(window).width() <800){
+if($(window).width() <900){
         $('.menu').removeClass('menu-open');
     }else{
         $('.menu').addClass('menu-open');
     }
 
 $(window).resize(function(){
-    if($(window).width() <800){
+    if($(window).width() <900){
         $('.menu').removeClass('menu-open');
     }else{
         $('.menu').addClass('menu-open');

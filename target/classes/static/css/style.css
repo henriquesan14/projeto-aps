@@ -17,10 +17,15 @@
 nav.navbar{
     margin: 0;
     border-radius: 0;
+    background-color:#16202a;
 }
 .navbar-toggle{
     display: inline-block;
     margin-left: 10px;
+}
+
+.nome{
+    color:#fff;
 }
 
 .menu {
@@ -29,7 +34,7 @@ nav.navbar{
     margin-bottom: -500em;
     height: 100%;
     border-top: 1px solid #333;
-    background-color: #222;
+    background-color: #26323e;
     flex-shrink: 0;
     overflow: hidden;
     transition: width .5s;
@@ -45,16 +50,16 @@ nav.navbar{
     }
 
      .menu ul li.active {
-       background-color: #080808;
+       background-color: #6cb7c9;
     }
 
     .menu ul li a {
       display: block;
-       color: #9d9d9d;
+       color: #717d86;
        padding: 10px 15px;
        white-space: nowrap;
        text-decoration: none;
-
+       font-weight:bold;
     }
 
     .menu ul li ul li a{
@@ -62,19 +67,20 @@ nav.navbar{
     }
 
     .menu ul li ul li:hover{
-      border-left: 2px solid green;
+      border-left: 3px solid #fff;
 
     }
 
     .menu ul li a i {
-      margin-right: 5px;
+      margin-right: 15px;
+      font-size:15px;
     }
 
    .menu ul li:hover a,
      .menu ul li.active a {
-       color: white;
-       background-color: #111;
-       border-left: 3px solid green;
+       color: #fff;
+       background-color: #02abe4;
+       border-left: 4px solid #fff;
     }
 
 
@@ -101,24 +107,43 @@ nav.navbar{
   height: 34px;
 }
 
+.panel-info {
+    border: 2px solid #edeaef;
+}
+
+
 .panel-info > .panel-heading {
-background: #04BC4A; color: #fff; }
+background: #edeaef; color: #5c5a5a;  }
+
+.panel-info > .panel-heading > .panel-title {
+    font-weight:bold;  }
 
 .pesq{
   margin-top: 5px;
 }
 
 .log{
-    background-color:#000;
+    background-color:#26323e;
     color:#fff;
     margin-top:10px;
+    font-weight:bold;
 }
 
 .log2{
-    background-color:#000;
+    background-color:#26323e;
     color:#fff;
     margin-top:10px;
     margin-left:13px;
+    font-weight:bold;
+}
+
+.log:hover{
+background-color:#02abe4;
+color:#fff;}
+
+.log2:hover{
+background-color:#02abe4;
+color:#fff;
 }
 
 @media (max-width: 800px) {
