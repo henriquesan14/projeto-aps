@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
     <title>Login</title>
-    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-login.css}"/>
 </head>
@@ -14,24 +14,22 @@
         <form th:action="@{/login}" method="post">
             <img th:src="@{/img/user.png}"/>
             <div class="form-group">
-                <label class="sr-only" >Usuário</label>
+                <label class="sr-only" for="login">Usuário</label>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" name="username"  class="form-control" placeholder="Seu login de usuário" />
+                    <div class="input-group-addon">
+                        <i class="fas fa-user"></i>
                     </div>
-
+                    <input type="text" name="username" id="login" class="form-control" placeholder="Seu login de usuário" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="sr-only" >Senha</label>
+                <label class="sr-only" for="senha">Senha</label>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" name="password"  class="form-control" placeholder="Digite sua senha" />
+                    <div class="input-group-addon">
+                        <i class="fas fa-lock"></i>
                     </div>
-
+                    <input id="senha" type="password" name="password" class="form-control" placeholder="Digite sua senha" />
                 </div>
             </div>
 
