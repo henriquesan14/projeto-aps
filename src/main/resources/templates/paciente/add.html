@@ -12,33 +12,34 @@
                     <div class="form-group col-md-6">
                         <label for="nome">Nome</label>
                         <input class="form-control" type="text" name="nome" id="nome" th:field="*{nome}" />
-                        <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+                        <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="rg">RG</label>
                         <input class="form-control" type="text" name="rg" id="rg" minlength="9" th:field="*{rg}" />
-                        <div th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}"></div>
+                        <div th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="cpf">CPF</label>
                         <input class="form-control" type="text" name="cpf"  id="cpf" th:field="*{cpf}" />
-                        <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
+                        <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="dataNascimento">Data de Nacimento</label>
                         <input class="form-control" type="date" name="dataNascimento" id="dataNascimento" th:field="*{dtNascimento}"  />
-                        <div th:if="${#fields.hasErrors('dtNascimento')}" th:errors="*{dtNascimento}"></div>
+                        <div th:if="${#fields.hasErrors('dtNascimento')}" th:errors="*{dtNascimento}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="telefone">Telefone</label>
                         <input class="form-control" type="tel" name="telefone" id="telefone" th:field="*{telefone}"  />
-                        <div th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
+                        <div th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-12">
                         <input type="submit" class="btn  btn-success" value="Cadastrar" />
                         <a class="btn btn-default" href="?pg=analytics">Cancelar</a>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

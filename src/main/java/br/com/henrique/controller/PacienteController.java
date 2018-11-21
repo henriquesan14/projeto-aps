@@ -39,7 +39,7 @@ public class PacienteController {
 
         service.salvar(paciente);
         attr.addFlashAttribute("mensagem", "Paciente cadastrado com sucesso.");
-        return new ModelAndView("home","conteudo" ,"paciente/list");
+        return new ModelAndView("redirect:/pacientes/listar");
     }
 
     @GetMapping("/listar")

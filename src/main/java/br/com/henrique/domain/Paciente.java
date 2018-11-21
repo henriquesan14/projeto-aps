@@ -28,8 +28,10 @@ public class Paciente {
     @Column(nullable = false, length = 11)
     private String cpf;
 
+    @Column(name = "data_nascimento", columnDefinition = "DATE")
     @NotNull(message = "Informe a data de nascimento.")
-    private String dtNascimento;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dtNascimento;
 
     @Size(min=11, max= 11)
     @Column(nullable = false, length = 11)
@@ -67,11 +69,11 @@ public class Paciente {
         this.cpf = cpf;
     }
 
-    public String getDtNascimento() {
+    public LocalDate getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(String dtNascimento) {
+    public void setDtNascimento(LocalDate dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 

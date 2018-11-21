@@ -144,10 +144,16 @@ background-color:#02abe4;
 color:#fff;
 }
 
+.label.label-danger{
+font-size:12px;
+}
+
 @media (max-width: 800px) {
   .scroll-table{
   overflow-x: auto;
 }
+
+
 
 
 }
