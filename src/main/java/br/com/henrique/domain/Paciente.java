@@ -1,0 +1,85 @@
+package br.com.henrique.domain;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
+
+
+@Entity
+public class Paciente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Size(min= 10, max= 100)
+    @Column(nullable = false, length = 100)
+    private String nome;
+
+    @Size(min= 9, max= 12)
+    @Column(nullable = false, length = 12)
+    private String rg;
+
+    @Size(min= 11, max= 11)
+    @Column(nullable = false, length = 11)
+    private String cpf;
+
+    @NotNull(message = "Informe a data de nascimento.")
+    private String dtNascimento;
+
+    @Size(min=11, max= 11)
+    @Column(nullable = false, length = 11)
+    private String telefone;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDtNascimento() {
+        return dtNascimento;
+    }
+
+    public void setDtNascimento(String dtNascimento) {
+        this.dtNascimento = dtNascimento;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+}
