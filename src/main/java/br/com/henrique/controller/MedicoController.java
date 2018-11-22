@@ -62,9 +62,17 @@ public class MedicoController {
     }
 
     @GetMapping("/{id}/remover")
-    public ModelAndView excluir(@PathVariable("id") Long id, RedirectAttributes attr){
+    public ModelAndView excluir(@PathVariable("id") Long id, ModelMap model){
+        Medico medico = service.buscarPorId(id);
+        model.addAttribute("medico",medico);
+        model.addAttribute("conteudo","/medico/confirm");
+        return new ModelAndView("home",model);
+    }
+
+    @GetMapping("/{id}/remover/confirm")
+    public ModelAndView confirmar(@PathVariable Long id, RedirectAttributes attr ){
         service.excluir(id);
-        attr.addFlashAttribute("mensagem", "Médico excluído com sucesso.");
+        attr.addFlashAttribute("mensagem", "Médico excluido com sucesso");
         return new ModelAndView("redirect:/medicos");
     }
 
