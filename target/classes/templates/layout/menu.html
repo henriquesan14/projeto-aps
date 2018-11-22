@@ -10,14 +10,14 @@
                 <li class="abrir-menu"><a href="#"><i class="fas fa-user"></i><span>Pacientes</span></a>
                     <ul class="hide-menu">
                         <li><a th:href="@{/pacientes/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
-                        <li><a th:href="@{/pacientes/listar}"><i class="fas fa-list-alt"></i>Listar</a></li>
+                        <li><a th:href="@{/pacientes}"><i class="fas fa-list-alt"></i>Listar</a></li>
                     </ul> <!--fim submenu-->
                 </li>
 
                 <li class="abrir-menu"><a href="#"><i class="fas fa-user-md"></i><span>Médicos</span></a>
                     <ul class="hide-menu">
-                        <li><a href="?pg=medico/novo_medico"><i class="fas fa-plus-square"></i>Cadastro</a></li>
-                        <li><a href="?pg=medico/medicos"><i class="fas fa-list-alt"></i>Listar</a></li>
+                        <li><a th:href="@{/medicos/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
+                        <li><a th:href="@{/medicos}"><i class="fas fa-list-alt"></i>Listar</a></li>
                     </ul><!--fim submenu-->
                 </li>
 

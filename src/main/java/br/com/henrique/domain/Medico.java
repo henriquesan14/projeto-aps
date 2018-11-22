@@ -1,16 +1,10 @@
 package br.com.henrique.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
-
 
 @Entity
-public class Paciente {
+public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,23 +14,22 @@ public class Paciente {
     @Column(nullable = false, length = 100)
     private String nome;
 
-
-    @Size(min= 9, max= 12)
-    @Column(nullable = false, length = 12)
-    private String rg;
+    @Size(min= 4, max= 10)
+    @Column(nullable = false, length = 10)
+    private String crm;
 
     @Size(min= 11, max= 11)
     @Column(nullable = false, length = 11)
     private String cpf;
 
-    @Column(name = "data_nascimento", columnDefinition = "DATE")
-    @NotNull(message = "Informe a data de nascimento.")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dtNascimento;
+    @Size(min= 5, max= 30)
+    @Column(nullable = false, length = 12)
+    private String especialidade;
 
     @Size(min=11, max= 11)
     @Column(nullable = false, length = 11)
     private String telefone;
+
 
     public Long getId() {
         return id;
@@ -54,28 +47,20 @@ public class Paciente {
         this.nome = nome;
     }
 
-    public String getRg() {
-        return rg;
+    public String getCrm() {
+        return crm;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCrm(String crm) {
+        this.crm = crm;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public LocalDate getDtNascimento() {
-        return dtNascimento;
-    }
-
-    public void setDtNascimento(LocalDate dtNascimento) {
-        this.dtNascimento = dtNascimento;
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
     }
 
     public String getTelefone() {
@@ -86,5 +71,11 @@ public class Paciente {
         this.telefone = telefone;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 }
