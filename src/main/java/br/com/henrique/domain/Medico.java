@@ -2,6 +2,7 @@ package br.com.henrique.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Medico {
@@ -29,6 +30,9 @@ public class Medico {
     @Size(min=11, max= 11)
     @Column(nullable = false, length = 11)
     private String telefone;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private List<Consulta> consultas;
 
 
     public Long getId() {
@@ -77,5 +81,13 @@ public class Medico {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
     }
 }

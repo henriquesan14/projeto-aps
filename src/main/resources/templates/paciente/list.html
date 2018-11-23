@@ -44,7 +44,7 @@
                                 <td th:text="${paciente.nome}"></td>
                                 <td th:text="${paciente.rg}"></td>
                                 <td th:text="${paciente.cpf}"></td>
-                                <td th:text="${paciente.dtNascimento}"></td>
+                                <td th:text="${#temporals.format(paciente.dtNascimento, 'dd/MM/yyyy')}"></td>
                                 <td th:text="${paciente.telefone}"></td>
                                 <td><a class="btn btn-success" th:href="@{/pacientes/{id}/editar(id=${paciente.id})}"><i class="fas fa-pencil-alt"></i></a></td>
                                 <td><a class="btn btn-danger" th:href="@{/pacientes/{id}/remover(id=${paciente.id})}"><i class="fas fa-trash-alt"></i></a></td>

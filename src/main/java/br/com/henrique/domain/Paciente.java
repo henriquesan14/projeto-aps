@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -37,6 +38,9 @@ public class Paciente {
     @Size(min=11, max= 11)
     @Column(nullable = false, length = 11)
     private String telefone;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private List<Consulta> consultas;
 
     public Long getId() {
         return id;
@@ -86,5 +90,11 @@ public class Paciente {
         this.telefone = telefone;
     }
 
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
 
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
+    }
 }
