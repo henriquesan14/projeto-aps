@@ -15,8 +15,8 @@ public class ConfigSpringMvc extends WebMvcConfigurerAdapter {
     @Bean
     public SpringTemplateEngine templateEngine(SpringResourceTemplateResolver resolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
         templateEngine.addDialect(new Java8TimeDialect());
+        templateEngine.setTemplateResolver(resolver);
         return templateEngine;
     }
 

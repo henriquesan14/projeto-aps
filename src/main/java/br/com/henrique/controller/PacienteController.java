@@ -26,7 +26,7 @@ public class PacienteController {
 
     @PostMapping("/salvar")
     public ModelAndView salvar(@Valid @ModelAttribute("paciente") Paciente paciente, BindingResult result, RedirectAttributes attr) {
-        System.out.println(paciente.getDtNascimento());
+
         if (result.hasErrors()) {
             return new ModelAndView("home","conteudo","paciente/add");
         }

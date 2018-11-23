@@ -26,6 +26,7 @@ public class MedicoServiceImpl implements MedicoService {
         return dao.findAll();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Medico buscarPorId(Long id) {
         return dao.findOne(id);
@@ -41,6 +42,7 @@ public class MedicoServiceImpl implements MedicoService {
         dao.delete(id);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Medico> buscarPorNome(String nome) {
         return dao.findByName("%"+nome+"%");
