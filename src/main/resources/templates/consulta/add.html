@@ -7,33 +7,51 @@
         </div>
 
         <div class = "panel-body">
-            <form th:action="@{/pacientes/salvar}" th:method="${paciente.id} == null ? post : put" th:object="${paciente}">
+            <form th:action="@{/consultas/salvar}" method="post" th:object="${consulta}">
                 <input id="id" type="hidden" th:field="*{id}"/>
                 <div class="form-group col-md-6">
-                    <label for="nome">Nome</label>
-                    <input class="form-control" type="text" name="nome" id="nome" th:field="*{nome}" />
-                    <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="label label-danger"></div>
+                    <label for="paciente">Paciente</label>
+                    <select th:field="*{paciente}" class="form-control" id="paciente" >
+                        <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}"></option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('paciente')}" th:errors="*{paciente}" class="label label-danger"></div>
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="rg">RG</label>
-                    <input class="form-control" type="text" name="rg" id="rg" minlength="9" th:field="*{rg}" />
-                    <div th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}" class="label label-danger"></div>
+                    <label for="paciente">Médico</label>
+                    <select th:field="*{medico}" class="form-control" id="medico" >
+                        <option th:each="medico : ${medicos}" th:value="${medico.id}" th:text="${medico.nome}"></option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('medico')}" th:errors="*{medico}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="cpf">CPF</label>
-                    <input class="form-control" type="text" name="cpf"  id="cpf" th:field="*{cpf}" />
-                    <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="label label-danger"></div>
+                    <label for="paciente">Turno</label>
+                    <select th:field="*{turno}" class="form-control" id="turno" >
+                        <option value="manha">Manhã</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noite">Noite</option>
+                    </select>
+
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="dataNascimento">Data de Nacimento</label>
-                    <input class="form-control" type="date" name="dataNascimento" id="dataNascimento" th:field="*{dtNascimento}"  />
-                    <div th:if="${#fields.hasErrors('dtNascimento')}" th:errors="*{dtNascimento}" class="label label-danger"></div>
+                    <label for="tipo">Tipo</label>
+                    <select th:field="*{tipo}" class="form-control" id="tipo" >
+                        <option value="agendada">Agendada</option>
+                        <option value="andamento">Andamento</option>
+                        <option value="retorno">Retorno</option>
+                        <option value="finalizada">Finalizada</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="dataConsulta">Data da consulta</label>
+                    <input class="form-control" type="date" name="dataConsulta" id="dataConsulta" th:field="*{dataConsulta}"  />
+                    <div th:if="${#fields.hasErrors('dataConsulta')}" th:errors="*{dataConsulta}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="telefone">Telefone</label>
-                    <input class="form-control" type="tel" name="telefone" id="telefone" th:field="*{telefone}"  />
-                    <div th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="label label-danger"></div>
+                    <label for="dataRetorno">Data de retorno</label>
+                    <input class="form-control"  type="date" name="dataRetorno" id="dataRetorno" th:field="*{dataRetorno}"  />
+                    <div th:if="${#fields.hasErrors('dataRetorno')}" th:errors="*{dataRetorno}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-12">
                     <input type="submit" class="btn  btn-success" value="Cadastrar" />

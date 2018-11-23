@@ -13,8 +13,11 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private StatusConsulta status;
+    @NotNull
+    private String tipo;
+
+    @NotNull
+    private String turno;
 
     @Column(name = "data_consulta", columnDefinition = "DATE")
     @NotNull(message = "Informe a data da consulta.")
@@ -27,10 +30,12 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name="id_paciente")
+    @NotNull(message = "Informe o paciente")
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name="id_medico")
+    @NotNull(message = "Informe o médico")
     private Medico medico;
 
     public Long getId() {
@@ -41,12 +46,12 @@ public class Consulta {
         this.id = id;
     }
 
-    public StatusConsulta getStatus() {
-        return status;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setStatus(StatusConsulta status) {
-        this.status = status;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public LocalDate getDataConsulta() {
@@ -79,5 +84,13 @@ public class Consulta {
 
     public void setMedico(Medico medico) {
         this.medico = medico;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 }
