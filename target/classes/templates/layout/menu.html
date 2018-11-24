@@ -35,6 +35,13 @@
                     </ul> <!--fim fim submenu-->
                 </li>
 
+                <li class="abrir-menu"><a href="#"><i class="fas fa-glasses"></i><span>Especialidades</span></a>
+                    <ul class="hide-menu">
+                        <li><a th:href="@{/especialidades/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
+                        <li><a th:href="@{/especialidades}"><i class="fas fa-list-alt"></i>Listar</a></li>
+                    </ul> <!--fim fim submenu-->
+                </li>
+
 
                 <li class="visible-xs">
                     <form th:action="@{/logout}" method="post">

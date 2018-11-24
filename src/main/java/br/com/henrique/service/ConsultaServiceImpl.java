@@ -56,5 +56,15 @@ public class ConsultaServiceImpl implements ConsultaService {
         return consultaDao.consultasDoDiaAndamento(data);
     }
 
+    @Override
+    public List<Consulta> consultasPorPaciente(String nome) {
+        return consultaDao.consultasPorPaciente("%"+nome+"%");
+    }
+
+    @Override
+    public List<Consulta> consultasPorMedico(String nome) {
+        return consultaDao.consultasPorMedico("%"+nome+"%");
+    }
+
 
 }

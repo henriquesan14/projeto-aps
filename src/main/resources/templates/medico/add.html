@@ -27,7 +27,9 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="especialidade">Especialidade</label>
-                    <input class="form-control" type="text" name="especialidade" id="especialidade" th:field="*{especialidade}"  />
+                    <select th:field="*{especialidade}" class="form-control" id="especialidade" >
+                        <option th:text="${especialidade.nome}" th:value="${especialidade.id}" th:each="especialidade: ${especialidades}"></option>
+                    </select>
                     <div th:if="${#fields.hasErrors('especialidade')}" th:errors="*{especialidade}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-6">

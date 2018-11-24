@@ -1,7 +1,6 @@
 package br.com.henrique.dao;
 
 import br.com.henrique.domain.Consulta;
-import br.com.henrique.domain.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,5 +14,11 @@ public interface ConsultaDao extends JpaRepository<Consulta, Long> {
 
     @Query("select c from Consulta c where c.dataConsulta=?1 and c.tipo='andamento'")
     public List<Consulta> consultasDoDiaAndamento(LocalDate data);
+
+    @Query("from Consulta c where c.paciente.nome like ?1")
+    public List<Consulta> consultasPorPaciente(String nome);
+
+    @Query("from Consulta c where c.medico.nome like ?1")
+    public List<Consulta> consultasPorMedico(String nome);
 
 }

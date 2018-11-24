@@ -1,6 +1,7 @@
 package br.com.henrique.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -23,9 +24,6 @@ public class Medico {
     @Column(nullable = false, length = 11)
     private String cpf;
 
-    @Size(min= 5, max= 30)
-    @Column(nullable = false, length = 12)
-    private String especialidade;
 
     @Size(min=11, max= 11)
     @Column(nullable = false, length = 11)
@@ -34,6 +32,10 @@ public class Medico {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
+    @ManyToOne
+    @JoinColumn(name = "id_especialidade")
+    @NotNull(message = "Informe a especialidade")
+    private Especialidade especialidade;
 
     public Long getId() {
         return id;
@@ -59,11 +61,11 @@ public class Medico {
         this.crm = crm;
     }
 
-    public String getEspecialidade() {
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
 

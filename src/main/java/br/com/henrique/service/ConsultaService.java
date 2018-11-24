@@ -15,5 +15,6 @@ public interface ConsultaService {
     void excluir(Long id);
     List<Consulta> consultasDoDia(LocalDate data);
     List<Consulta> consultasDoDiaAndamento(LocalDate data);
-
+    List<Consulta> consultasPorPaciente(String nome);
+    List<Consulta> consultasPorMedico(String nome);
 }

@@ -3,9 +3,7 @@ package br.com.henrique.controller;
 import br.com.henrique.domain.Consulta;
 import br.com.henrique.domain.Medico;
 import br.com.henrique.domain.Paciente;
-import br.com.henrique.domain.StatusConsulta;
 import br.com.henrique.service.ConsultaService;
-import br.com.henrique.service.ConsultaServiceImpl;
 import br.com.henrique.service.MedicoService;
 import br.com.henrique.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -144,6 +139,28 @@ public class ConsultaController {
         model.addAttribute("consultasDiaAndamento",consultaService.consultasDoDiaAndamento(date));
         model.addAttribute("conteudo","consulta/andamento");
         return new ModelAndView("home",model);
+    }
+
+    @GetMapping("/paciente")
+    public ModelAndView consultasPorPaciente(@RequestParam(value="nome") String nome,ModelMap model){
+        if (nome == null) {
+            return new ModelAndView("redirect:/consultas");
+        }
+
+        model.addAttribute("consultas", consultaService.consultasPorPaciente(nome));
+        model.addAttribute("conteudo", "/consulta/list");
+        return new ModelAndView("home", model);
+    }
+
+    @GetMapping("/medico")
+    public ModelAndView consultasPorMedico(@RequestParam(value="nome") String nome,ModelMap model){
+        if (nome == null) {
+            return new ModelAndView("redirect:/consultas");
+        }
+
+        model.addAttribute("consultas", consultaService.consultasPorMedico(nome));
+        model.addAttribute("conteudo", "/consulta/list");
+        return new ModelAndView("home", model);
     }
 
 

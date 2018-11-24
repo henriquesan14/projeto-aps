@@ -1,6 +1,8 @@
 package br.com.henrique.controller;
 
+import br.com.henrique.domain.Especialidade;
 import br.com.henrique.domain.Medico;
+import br.com.henrique.service.EspecialidadeService;
 import br.com.henrique.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/medicos")
@@ -18,6 +21,9 @@ public class MedicoController {
 
     @Autowired
     MedicoService service;
+
+    @Autowired
+    EspecialidadeService especialidadeService;
 
     @GetMapping("/cadastro")
     public ModelAndView preSalvar(@ModelAttribute("medico") Medico medico){
@@ -98,6 +104,30 @@ public class MedicoController {
         model.addAttribute("medicos", service.buscarPorId(id));
         model.addAttribute("conteudo", "/medico/list");
         return new ModelAndView("home", model);
+    }
+
+    @GetMapping("/espec")
+    public ModelAndView listarPorEspec(@RequestParam(value="espec") String nome, ModelMap model){
+        if(nome == null){
+            return new ModelAndView("redirect:/medicos");
+        }
+
+        model.addAttribute("medicos",service.buscarPorEspec(nome));
+        model.addAttribute("conteudo","/medico/list");
+        return new ModelAndView("home",model);
+    }
+
+    @GetMapping("/{id}/consultas")
+    public ModelAndView consultasPorMedico(@PathVariable Long id,ModelMap model){
+        model.addAttribute("consultas",service.consultasPorMedico(id));
+        model.addAttribute("medico",service.buscarPorId(id));
+        model.addAttribute("conteudo","medico/consultas");
+        return new ModelAndView("home",model);
+    }
+
+    @ModelAttribute("especialidades")
+    public List<Especialidade> especialidades(){
+        return especialidadeService.buscar();
     }
 
 }
