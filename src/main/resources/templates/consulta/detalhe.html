@@ -1,0 +1,104 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="corpo">
+    <div th:if="${mensagem !=null}" class="col-md-12">
+        <span th:text="${mensagem}" class="label label-success"></span>
+    </div>
+    <div class = "panel panel-info col-md-12">
+        <div class = "panel-heading">
+            <h3 class = "panel-title text-center" >Consulta</h3>
+        </div>
+
+        <div class = "panel-body">
+
+            <div class="scroll-table">
+                <h3 class="label label-default">Consulta</h3>
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Turno</th>
+                        <th>Data Consulta</th>
+                        <th>Data Retorno</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${consulta.id}"></td>
+                        <td th:text="${consulta.tipo}"></td>
+                        <td th:text="${consulta.turno}"></td>
+                        <td th:text="${#temporals.format(consulta.dataConsulta, 'dd/MM/yyyy')}"></td>
+                        <div th:if="${consulta.dataRetorno == null}">
+                            <td></td>
+                        </div>
+                        <div th:if="${consulta.dataRetorno != null}">
+                            <td th:text="${#temporals.format(consulta.dataRetorno, 'dd/MM/yyyy')}"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="scroll-table">
+                <h3 class="label label-default">Paciente</h3>
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>RG</th>
+                        <th>CPF</th>
+                        <th>Nascimento</th>
+                        <th>Telefone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td th:text="${paciente.id}"></td>
+                        <td th:text="${paciente.nome}"></td>
+                        <td th:text="${paciente.rg}"></td>
+                        <td th:text="${paciente.cpf}"></td>
+                        <td th:text="${#temporals.format(paciente.dtNascimento, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${paciente.telefone}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="scroll-table">
+                <h3 class="label label-default">Médico</h3>
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CRM</th>
+                        <th>CPF</th>
+                        <th>Especialidade</th>
+                        <th>Telefone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td th:text="${medico.id}"></td>
+                        <td th:text="${medico.nome}"></td>
+                        <td th:text="${medico.crm}"></td>
+                        <td th:text="${medico.cpf}"></td>
+                        <td th:text="${medico.especialidade}"></td>
+                        <td th:text="${medico.telefone}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="btn-atender" th:if="${consulta.tipo == 'agendada' || consulta.tipo== 'retorno' }">
+                <a class="btn btn-primary" th:href="@{/consultas/{id}/atender(id=${consulta.id})}"><i class="fas fa-arrow-right"></i><span>Atender</span></a>
+            </div>
+            <div >
+            <a class="btn btn-success" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i><span>Alterar</span></a>
+            <a class="btn btn-danger" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i><span>Excluir</span></a>
+            <a class="btn btn-default" th:href="@{/consultas}">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

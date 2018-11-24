@@ -3,21 +3,13 @@
     <div th:if="${mensagem !=null}" class="col-md-12">
         <span th:text="${mensagem}" class="label label-success"></span>
     </div>
+
     <div class = "panel panel-info col-md-12">
         <div class = "panel-heading">
-            <h3 class = "panel-title text-center">Consultas</h3>
+            <h3 class = "panel-title text-center">Consultas de Hoje em Andamento</h3>
         </div>
 
         <div class = "panel-body">
-
-
-            <div class="form-group col-md-6">
-                <form th:action="@{/consultas/{id}}" method="get">
-                    <label>Pesquisa por ID</label>
-                    <input class="form-control" type="text" name="id" />
-                    <input class="btn btn-info pesq" type="submit" value="Pesquisar" />
-                </form>
-            </div>
 
             <div class="scroll-table">
                 <table class="table  table-hover">
@@ -33,7 +25,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="consulta: ${consultas}">
+                    <tr th:each="consulta: ${consultasDiaAndamento}">
                         <td th:text="${consulta.id}"></td>
                         <td th:text="${consulta.paciente.nome}"></td>
                         <td th:text="${consulta.medico.nome}"></td>
@@ -49,19 +41,18 @@
                         <td><a class="btn btn-primary" th:href="@{/consultas/{id}/detalhes(id=${consulta.id})}"><i class="fas fa-list"></i></a></td>
                         <td><a class="btn btn-success" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i></a></td>
                         <td><a class="btn btn-danger" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i></a></td>
-
                     </tr>
                     </tbody>
                 </table>
-                <div th:if="${#lists.isEmpty(consultas)}">
-                    <div class="alert alert-info" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span>
-                        0 consultas!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            </div> <!--fim scroll-->
 
-</div>
+            <div th:if="${#lists.isEmpty(consultasDiaAndamento)}">
+                <div class="alert alert-info" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    0 consultas!
+                </div>
+            </div> <!--fim msg de vazio-->
+        </div> <!--fim panel-body-->
+    </div> <!--fim panel-->
+</div> <!--fim corpo-->
 </html>

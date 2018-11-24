@@ -1,6 +1,7 @@
 package br.com.henrique.service;
 
 import br.com.henrique.dao.PacienteDao;
+import br.com.henrique.domain.Consulta;
 import br.com.henrique.domain.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,12 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     public List<Paciente> buscarPorNome(String nome) {
         return dao.findByName("%"+nome+"%");
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Consulta> consultasPorPaciente(Long id) {
+        return dao.consultasPorPaciente(id);
     }
 
 

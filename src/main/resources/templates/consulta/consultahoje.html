@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="corpo">
+    <div th:if="${mensagem !=null}" class="col-md-12">
+        <span th:text="${mensagem}" class="label label-success"></span>
+    </div>
+
+        <div class = "panel panel-info col-md-12">
+            <div class = "panel-heading">
+                <h3 class = "panel-title text-center">Consultas de Hoje</h3>
+            </div>
+
+            <div class = "panel-body">
+
+                <div class="scroll-table">
+                    <table class="table  table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Paciente</th>
+                            <th>Médico</th>
+                            <th>Tipo</th>
+                            <th>Turno</th>
+                            <th>Data Consulta</th>
+                            <th>Data Retorno</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="consulta: ${consultasDia}">
+                            <td th:text="${consulta.id}"></td>
+                            <td th:text="${consulta.paciente.nome}"></td>
+                            <td th:text="${consulta.medico.nome}"></td>
+                            <td th:text="${consulta.tipo}"></td>
+                            <td th:text="${consulta.turno}"></td>
+                            <td th:text="${#temporals.format(consulta.dataConsulta, 'dd/MM/yyyy')}"></td>
+                            <div th:if="${consulta.dataRetorno == null}">
+                                <td></td>
+                            </div>
+                            <div th:if="${consulta.dataRetorno != null}">
+                                <td th:text="${#temporals.format(consulta.dataRetorno, 'dd/MM/yyyy')}"></td>
+                            </div>
+                            <td><a class="btn btn-primary" th:href="@{/consultas/{id}/detalhes(id=${consulta.id})}"><i class="fas fa-list"></i></a></td>
+                            <td><a class="btn btn-success" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i></a></td>
+                            <td><a class="btn btn-danger" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div> <!--fim scroll-->
+
+                <div th:if="${#lists.isEmpty(consultasDia)}">
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        0 consultas!
+                    </div>
+                </div> <!--fim msg de vazio-->
+            </div> <!--fim panel-body-->
+        </div> <!--fim panel-->
+</div> <!--fim corpo-->
+</html>

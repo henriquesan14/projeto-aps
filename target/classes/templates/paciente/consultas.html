@@ -5,21 +5,38 @@
     </div>
     <div class = "panel panel-info col-md-12">
         <div class = "panel-heading">
-            <h3 class = "panel-title text-center">Consultas</h3>
+            <h3 class = "panel-title text-center" >Consultas</h3>
         </div>
 
         <div class = "panel-body">
-
-
-            <div class="form-group col-md-6">
-                <form th:action="@{/consultas/{id}}" method="get">
-                    <label>Pesquisa por ID</label>
-                    <input class="form-control" type="text" name="id" />
-                    <input class="btn btn-info pesq" type="submit" value="Pesquisar" />
-                </form>
-            </div>
-
             <div class="scroll-table">
+                <h3 class="label label-default">Paciente</h3>
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>RG</th>
+                        <th>CPF</th>
+                        <th>Nascimento</th>
+                        <th>Telefone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td th:text="${paciente.id}"></td>
+                        <td th:text="${paciente.nome}"></td>
+                        <td th:text="${paciente.rg}"></td>
+                        <td th:text="${paciente.cpf}"></td>
+                        <td th:text="${#temporals.format(paciente.dtNascimento, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${paciente.telefone}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/>
+            <div class="scroll-table">
+                <h3 class="label label-default">Consultas do Paciente</h3>
                 <table class="table  table-hover">
                     <thead>
                     <tr>
@@ -47,8 +64,6 @@
                             <td th:text="${#temporals.format(consulta.dataRetorno, 'dd/MM/yyyy')}"></td>
                         </div>
                         <td><a class="btn btn-primary" th:href="@{/consultas/{id}/detalhes(id=${consulta.id})}"><i class="fas fa-list"></i></a></td>
-                        <td><a class="btn btn-success" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i></a></td>
-                        <td><a class="btn btn-danger" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i></a></td>
 
                     </tr>
                     </tbody>
@@ -59,9 +74,9 @@
                         0 consultas!
                     </div>
                 </div>
+                <a class="btn btn-default" th:href="@{/pacientes}">Voltar</a>
             </div>
         </div>
     </div>
-
 </div>
 </html>

@@ -5,6 +5,7 @@ import br.com.henrique.domain.Medico;
 import br.com.henrique.domain.Paciente;
 import br.com.henrique.domain.StatusConsulta;
 import br.com.henrique.service.ConsultaService;
+import br.com.henrique.service.ConsultaServiceImpl;
 import br.com.henrique.service.MedicoService;
 import br.com.henrique.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -88,6 +93,58 @@ public class ConsultaController {
         return new ModelAndView("redirect:/consultas");
     }
 
+
+
+    @GetMapping("/{id}")
+    public ModelAndView listarPorId(@RequestParam(value = "id") Long id, ModelMap model) {
+
+        if (id == null) {
+            return new ModelAndView("redirect:/consultas");
+        }
+
+        model.addAttribute("consultas", consultaService.buscarPorId(id));
+        model.addAttribute("conteudo", "/consulta/list");
+        return new ModelAndView("home", model);
+    }
+
+    @GetMapping("/{id}/detalhes")
+    public ModelAndView detalhesConsulta(@PathVariable Long id,ModelMap model){
+        Consulta consulta= consultaService.buscarPorId(id);
+        Long idPaciente = consulta.getPaciente().getId();
+        Long idMedico = consulta.getMedico().getId();
+        LocalDate date=LocalDate.now();
+        model.addAttribute("consulta",consulta);
+        model.addAttribute("paciente",pacienteService.buscarPorId(idPaciente));
+        model.addAttribute("medico",medicoService.buscarPorId(idMedico));
+        model.addAttribute("dataAtual",date);
+        model.addAttribute("conteudo","consulta/detalhe");
+        return new ModelAndView("home",model);
+    }
+
+    @GetMapping("/{id}/atender")
+    public ModelAndView atender(@PathVariable Long id, RedirectAttributes attr){
+        Consulta consulta=consultaService.buscarPorId(id);
+        consulta.setTipo("andamento");
+        consultaService.salvar(consulta);
+        attr.addFlashAttribute("mensagem", "Consulta movida para atendimento");
+        return new ModelAndView("redirect:/consultas");
+    }
+
+    @GetMapping("/hoje")
+    public ModelAndView consultasHoje(ModelMap model){
+        LocalDate date= LocalDate.now();
+        model.addAttribute("consultasDia",consultaService.consultasDoDia(date));
+        model.addAttribute("conteudo","consulta/consultahoje");
+        return new ModelAndView("home",model);
+    }
+
+    @GetMapping("/andamento")
+    public ModelAndView consultasHojeAndamento(ModelMap model){
+        LocalDate date= LocalDate.now();
+        model.addAttribute("consultasDiaAndamento",consultaService.consultasDoDiaAndamento(date));
+        model.addAttribute("conteudo","consulta/andamento");
+        return new ModelAndView("home",model);
+    }
 
 
 

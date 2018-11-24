@@ -100,4 +100,12 @@ public class PacienteController {
         model.addAttribute("conteudo", "/paciente/list");
         return new ModelAndView("home", model);
     }
+
+    @GetMapping("/{id}/consultas")
+    public ModelAndView consultasPorPaciente(@PathVariable Long id,ModelMap model){
+        model.addAttribute("consultas",service.consultasPorPaciente(id));
+        model.addAttribute("paciente",service.buscarPorId(id));
+        model.addAttribute("conteudo","paciente/consultas");
+        return new ModelAndView("home",model);
+    }
 }
