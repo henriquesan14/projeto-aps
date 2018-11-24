@@ -160,6 +160,10 @@ font-size:15px;
 margin-bottom:8px;
 }
 
+.xx i{
+margin-right: 5px;
+}
+
 @media (max-width: 800px) {
   .scroll-table{
   overflow-x: auto;

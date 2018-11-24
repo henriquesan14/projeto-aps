@@ -84,19 +84,19 @@
                         <td th:text="${medico.nome}"></td>
                         <td th:text="${medico.crm}"></td>
                         <td th:text="${medico.cpf}"></td>
-                        <td th:text="${medico.especialidade}"></td>
+                        <td th:text="${medico.especialidade.nome}"></td>
                         <td th:text="${medico.telefone}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="btn-atender" th:if="${consulta.tipo == 'agendada' || consulta.tipo== 'retorno' }">
-                <a class="btn btn-primary" th:href="@{/consultas/{id}/atender(id=${consulta.id})}"><i class="fas fa-arrow-right"></i><span>Atender</span></a>
+                <a class="btn btn-primary xx" th:href="@{/consultas/{id}/atender(id=${consulta.id})}"><i class="fas fa-arrow-right"></i><span>Atender</span></a>
             </div>
             <div >
-            <a class="btn btn-success" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i><span>Alterar</span></a>
-            <a class="btn btn-danger" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i><span>Excluir</span></a>
-            <a class="btn btn-default" th:href="@{/consultas}">Voltar</a>
+            <a class="btn btn-success xx" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i><span>Alterar</span></a>
+            <a class="btn btn-danger xx" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i><span>Excluir</span></a>
+            <a class="btn btn-default xx" th:href="@{/consultas}">Voltar</a>
             </div>
         </div>
     </div>

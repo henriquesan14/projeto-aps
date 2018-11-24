@@ -11,11 +11,13 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>CRM</th>
+                    <th>Especialidade</th>
                 </tr>
                 <tr>
                     <td th:text="${medico.id}"></td>
                     <td th:text="${medico.nome}"></td>
                     <td th:text="${medico.crm}"></td>
+                    <td th:text="${medico.especialidade.nome}"></td>
                 </tr>
             </table>
             <a class="btn btn-danger" th:href="@{/medicos/{id}/remover/confirm(id=${medico.id})}">Sim</a>
