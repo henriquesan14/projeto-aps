@@ -176,6 +176,14 @@ public class ConsultaController {
         return new ModelAndView("home",model);
     }
 
+    @GetMapping("/hoje/medico")
+    public ModelAndView consultasHojePorMedico(@RequestParam(value="nome") String nome, ModelMap model){
+        LocalDate date= LocalDate.now();
+        model.addAttribute("consultasDia",consultaService.consultasDoDiaPorMedico(date,nome));
+        model.addAttribute("conteudo","consulta/consultahoje");
+        return new ModelAndView("home",model);
+    }
+
     @GetMapping("/andamento")
     public ModelAndView consultasHojeAndamento(ModelMap model){
         LocalDate date= LocalDate.now();
@@ -183,6 +191,16 @@ public class ConsultaController {
         model.addAttribute("conteudo","consulta/andamento");
         return new ModelAndView("home",model);
     }
+
+    @GetMapping("/andamento/medico")
+    public ModelAndView consultasHojeAndamentoPorMedico(@RequestParam(value="nome") String nome, ModelMap model){
+        LocalDate date= LocalDate.now();
+        model.addAttribute("consultasDiaAndamento",consultaService.consultasDoDiaAndamentoPorMedico(date,nome));
+        model.addAttribute("conteudo","consulta/andamento");
+        return new ModelAndView("home",model);
+    }
+
+
 
 
 
@@ -211,7 +229,6 @@ public class ConsultaController {
 
 
 
-
     @ModelAttribute("pacientes")
     public List<Paciente> pacientes() {
         return pacienteService.buscar();
@@ -221,4 +238,6 @@ public class ConsultaController {
     public List<Medico> medicos() {
         return medicoService.buscar();
     }
+
+
 }

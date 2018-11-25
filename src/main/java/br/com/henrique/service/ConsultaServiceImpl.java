@@ -2,13 +2,13 @@ package br.com.henrique.service;
 
 import br.com.henrique.dao.ConsultaDao;
 import br.com.henrique.domain.Consulta;
-import org.apache.tomcat.jni.Local;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.Month;
+
 import java.util.List;
 
 @Service
@@ -51,10 +51,20 @@ public class ConsultaServiceImpl implements ConsultaService {
         return consultaDao.consultasDoDia(data);
     }
 
+    @Override
+    public List<Consulta> consultasDoDiaPorMedico(LocalDate data, String nome) {
+        return consultaDao.consultasDoDiaPorMedico(data,"%"+nome+"%");
+    }
+
     @Transactional(readOnly = true)
     @Override
     public List<Consulta> consultasDoDiaAndamento(LocalDate data) {
         return consultaDao.consultasDoDiaAndamento(data);
+    }
+
+    @Override
+    public List<Consulta> consultasDoDiaAndamentoPorMedico(LocalDate data, String nome) {
+        return consultaDao.consultasDoDiaAndamentoPorMedico(data,"%"+nome+"%");
     }
 
     @Override

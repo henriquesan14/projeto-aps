@@ -4,7 +4,6 @@ import br.com.henrique.dao.MedicoDao;
 import br.com.henrique.domain.Consulta;
 import br.com.henrique.domain.Medico;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

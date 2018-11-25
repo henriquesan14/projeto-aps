@@ -6,7 +6,7 @@
     </div>
     <div class = "panel panel-info col-md-12">
         <div class = "panel-heading">
-            <h3 class = "panel-title text-center" th:text="${consulta.id == null ? 'Nova Consulta' : 'Editar Consulta'}"></h3>
+            <h3 class = "panel-title text-center" th:text="${consulta.id == null ? 'Agendar Consulta' : 'Editar Consulta'}"></h3>
         </div>
 
         <div class = "panel-body">
@@ -17,6 +17,7 @@
                     <select th:field="*{paciente}" class="form-control" id="paciente" >
                         <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}"></option>
                     </select>
+
                     <div th:if="${#fields.hasErrors('paciente')}" th:errors="*{paciente}" class="label label-danger"></div>
                 </div>
 
@@ -51,7 +52,7 @@
                     <input class="form-control" type="date" name="dataConsulta" id="dataConsulta" th:field="*{dataConsulta}"  />
                     <div th:if="${#fields.hasErrors('dataConsulta')}" th:errors="*{dataConsulta}" class="label label-danger"></div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" th:if="${consulta.dataConsulta} != null">
                     <label for="dataRetorno">Data de retorno</label>
                     <input class="form-control"  type="date" name="dataRetorno" id="dataRetorno" th:field="*{dataRetorno}"  />
                     <div th:if="${#fields.hasErrors('dataRetorno')}" th:errors="*{dataRetorno}" class="label label-danger"></div>

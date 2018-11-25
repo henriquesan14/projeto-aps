@@ -1,6 +1,5 @@
 package br.com.henrique.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

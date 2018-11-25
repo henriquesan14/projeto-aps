@@ -1,6 +1,8 @@
 package br.com.henrique.controller;
 
+
 import br.com.henrique.service.ConsultaService;
+import br.com.henrique.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,14 +10,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
+
 
 @Controller
 public class HomeController {
 
     @Autowired
     ConsultaService service;
+
+    @Autowired
+    MedicoService medicoService;
 
     @GetMapping("/login")
     public String login(){
@@ -55,5 +59,7 @@ public class HomeController {
         int mes= LocalDate.now().getMonthValue() -1;
         return service.consultasRealizadasMes(mes);
     }
+
+
 
 }
