@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 public interface ConsultaDao extends JpaRepository<Consulta, Long> {
@@ -23,6 +24,15 @@ public interface ConsultaDao extends JpaRepository<Consulta, Long> {
 
     @Query("select count(c) from Consulta c where c.medico.id=?1 and c.dataConsulta=?2 and c.turno=?3")
     public long verifica(Long id,LocalDate data,String turno);
+
+    @Query("select count(c) from Consulta c where c.dataConsulta=?1")
+    public long consultasHoje(LocalDate data);
+
+    @Query("select count(c) from Consulta c where MONTH(c.dataConsulta) = ?1 and c.tipo='agendada' or c.tipo='retorno'")
+    public long consultasAgendadasMes(Integer mes);
+
+    @Query("select count(c) from Consulta c where MONTH(c.dataConsulta) = ?1 and c.tipo='finalizada' or c.tipo='retorno'")
+    public long consultasRealizadasMes(Integer mes);
 
 
 }

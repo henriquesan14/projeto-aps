@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 @Service
@@ -69,6 +70,21 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public long verifica(Long id,LocalDate data,String turno) {
         return consultaDao.verifica(id,data,turno);
+    }
+
+    @Override
+    public long consultasHoje(LocalDate data) {
+        return consultaDao.consultasHoje(data);
+    }
+
+    @Override
+    public long consultasAgendadasMes(Integer mes) {
+        return consultaDao.consultasAgendadasMes(mes);
+    }
+
+    @Override
+    public long consultasRealizadasMes(Integer mes) {
+        return consultaDao.consultasRealizadasMes(mes);
     }
 
 

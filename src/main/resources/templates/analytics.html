@@ -1,26 +1,65 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="corpo">
-            <div class = "panel panel-info col-md-12">
-                <div class = "panel-heading">
-                    <h3 class = "panel-title text-center">Consultas Realizadas no Mês</h3>
+        <div >
+            <div class="col-sm-6">
+                <div class = "panel panel-info ">
+                    <div class = "panel-heading">
+                        <h3 class = "panel-title text-center">Consultas Agendadas Hoje</h3>
+                    </div>
+
+                    <div class = "panel-body">
+                        <div class="alert alert-success col-md-2 sm">
+                            <b th:text="${consultasHoje}"></b>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class = "panel-body">
+            <div class="col-sm-6">
+                <div class = "panel panel-info">
+                    <div class = "panel-heading ">
+                        <h3 class = "panel-title text-center">Consultas Agendadas no Mês Atual</h3>
+                    </div>
 
+                    <div class = "panel-body">
+                        <div class="alert alert-success col-md-2 sm">
+                            <b th:text="${consultasAgendadasMes}"></b>
+                        </div>
 
+                    </div>
                 </div>
             </div>
 
-            <div class = "panel panel-info col-md-12">
-                <div class = "panel-heading ">
-                    <h3 class = "panel-title text-center">Consultas Agendadas no Mês</h3>
-                </div>
+            <div class="col-sm-6">
+                <div class = "panel panel-info">
+                    <div class = "panel-heading ">
+                        <h3 class = "panel-title text-center">Consultas Realizadas no Mês Atual</h3>
+                    </div>
 
-                <div class = "panel-body">
+                    <div class = "panel-body">
+                        <div class="alert alert-success col-md-2 sm">
+                            <b th:text="${consultasRealizadasMes}"></b>
+                        </div>
 
-
+                    </div>
                 </div>
             </div>
+
+            <div class="col-sm-6">
+                <div class = "panel panel-info">
+                    <div class = "panel-heading ">
+                        <h3 class = "panel-title text-center">Consultas Realizadas no Mês Anterior</h3>
+                    </div>
+
+                    <div class = "panel-body">
+                        <div class="alert alert-success col-md-2 sm">
+                            <b th:text="${consultasMesAnterior}"></b>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </html>

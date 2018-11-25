@@ -4,6 +4,7 @@ import br.com.henrique.domain.Consulta;
 import br.com.henrique.domain.Paciente;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 public interface ConsultaService {
@@ -18,4 +19,7 @@ public interface ConsultaService {
     List<Consulta> consultasPorPaciente(String nome);
     List<Consulta> consultasPorMedico(String nome);
     long verifica(Long id,LocalDate data,String turno);
+    long consultasHoje(LocalDate data);
+    long consultasAgendadasMes(Integer mes);
+    long consultasRealizadasMes(Integer mes);
 }

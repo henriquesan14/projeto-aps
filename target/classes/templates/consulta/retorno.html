@@ -1,6 +1,9 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="corpo">
+    <div th:if="${mensagem !=null}" class="col-md-12">
+        <span th:text="${mensagem}" class="label label-danger"></span>
+    </div>
     <div class = "panel panel-info col-md-12">
         <div class = "panel-heading">
             <h3 class = "panel-title text-center">Agendar Retorno</h3>

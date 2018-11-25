@@ -42,7 +42,7 @@ public class ConsultaController {
             return new ModelAndView("home","conteudo","consulta/add");
         }
         if(consultaService.verifica(consulta.getMedico().getId(),consulta.getDataConsulta(),consulta.getTurno()) >10){
-            model.addAttribute("mensagem","Limite de consultas por turno e médico excedida.");
+            model.addAttribute("mensagem","Limite de consultas por turno e médico excedida nesta data.");
             return new ModelAndView("home","conteudo","consulta/add");
         }
 
@@ -67,9 +67,13 @@ public class ConsultaController {
     }
 
     @PutMapping("/salvar")
-    public ModelAndView atualizar(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr) {
+    public ModelAndView atualizar(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr,ModelMap model) {
         if (result.hasErrors()) {
             return new ModelAndView("/consulta/add");
+        }
+        if(consultaService.verifica(consulta.getMedico().getId(),consulta.getDataConsulta(),consulta.getTurno()) >10){
+            model.addAttribute("mensagem","Limite de consultas por turno e médico excedida nesta data.");
+            return new ModelAndView("home","conteudo","consulta/add");
         }
 
 
@@ -148,9 +152,13 @@ public class ConsultaController {
     }
 
     @PutMapping("/salvar/retorno")
-    public ModelAndView salvarRetorno(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr) {
+    public ModelAndView salvarRetorno(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr,ModelMap model) {
         if (result.hasErrors()) {
             return new ModelAndView("redirect:/consultas");
+        }
+        if(consultaService.verifica(consulta.getMedico().getId(),consulta.getDataRetorno(),consulta.getTurno()) >10){
+            model.addAttribute("mensagem","Limite de consultas por turno e médico excedida nesta data.");
+            return new ModelAndView("home","conteudo","consulta/retorno");
         }
         consulta.setTipo("retorno");
         consultaService.editar(consulta);
