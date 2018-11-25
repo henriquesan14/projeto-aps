@@ -15,4 +15,5 @@ public interface MedicoService {
     List<Medico> buscarPorNome(String nome);
     List<Medico> buscarPorEspec(String nome);
     List<Consulta> consultasPorMedico(Long id);
+
 }

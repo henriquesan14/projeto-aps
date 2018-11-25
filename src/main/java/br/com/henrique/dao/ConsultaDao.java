@@ -21,4 +21,8 @@ public interface ConsultaDao extends JpaRepository<Consulta, Long> {
     @Query("from Consulta c where c.medico.nome like ?1")
     public List<Consulta> consultasPorMedico(String nome);
 
+    @Query("select count(c) from Consulta c where c.medico.id=?1 and c.dataConsulta=?2 and c.turno=?3")
+    public long verifica(Long id,LocalDate data,String turno);
+
+
 }

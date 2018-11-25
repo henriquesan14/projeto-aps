@@ -130,4 +130,8 @@ public class MedicoController {
         return especialidadeService.buscar();
     }
 
+
+
+
+
 }

@@ -2,7 +2,7 @@ package br.com.henrique.service;
 
 import br.com.henrique.dao.ConsultaDao;
 import br.com.henrique.domain.Consulta;
-import br.com.henrique.domain.Paciente;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +64,11 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public List<Consulta> consultasPorMedico(String nome) {
         return consultaDao.consultasPorMedico("%"+nome+"%");
+    }
+
+    @Override
+    public long verifica(Long id,LocalDate data,String turno) {
+        return consultaDao.verifica(id,data,turno);
     }
 
 

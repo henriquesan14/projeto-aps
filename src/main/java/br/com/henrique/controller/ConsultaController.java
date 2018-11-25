@@ -37,8 +37,12 @@ public class ConsultaController {
     }
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr) {
+    public ModelAndView salvar(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr, ModelMap model) {
         if (result.hasErrors()) {
+            return new ModelAndView("home","conteudo","consulta/add");
+        }
+        if(consultaService.verifica(consulta.getMedico().getId(),consulta.getDataConsulta(),consulta.getTurno()) >10){
+            model.addAttribute("mensagem","Limite de consultas por turno e médico excedida.");
             return new ModelAndView("home","conteudo","consulta/add");
         }
 
@@ -67,6 +71,7 @@ public class ConsultaController {
         if (result.hasErrors()) {
             return new ModelAndView("/consulta/add");
         }
+
 
         consultaService.editar(consulta);
         attr.addFlashAttribute("mensagem", "Consulta atualizada com sucesso.");
@@ -125,6 +130,36 @@ public class ConsultaController {
         return new ModelAndView("redirect:/consultas");
     }
 
+    @GetMapping("/{id}/finalizar")
+    public ModelAndView finalizar(@PathVariable Long id, RedirectAttributes attr){
+        Consulta consulta=consultaService.buscarPorId(id);
+        consulta.setTipo("finalizada");
+        consultaService.salvar(consulta);
+        attr.addFlashAttribute("mensagem", "Consulta finalizada");
+        return new ModelAndView("redirect:/consultas");
+    }
+
+    @GetMapping("/{id}/retorno")
+    public ModelAndView retorno(@PathVariable Long id, ModelMap model){
+        Consulta consulta = consultaService.buscarPorId(id);
+        model.addAttribute("consulta", consulta);
+        model.addAttribute("conteudo","/consulta/retorno");
+        return new ModelAndView("home", model);
+    }
+
+    @PutMapping("/salvar/retorno")
+    public ModelAndView salvarRetorno(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, RedirectAttributes attr) {
+        if (result.hasErrors()) {
+            return new ModelAndView("redirect:/consultas");
+        }
+        consulta.setTipo("retorno");
+        consultaService.editar(consulta);
+        attr.addFlashAttribute("mensagem", "Retorno agendado com sucesso.");
+        return new ModelAndView("redirect:/consultas");
+    }
+
+
+
     @GetMapping("/hoje")
     public ModelAndView consultasHoje(ModelMap model){
         LocalDate date= LocalDate.now();
@@ -140,6 +175,8 @@ public class ConsultaController {
         model.addAttribute("conteudo","consulta/andamento");
         return new ModelAndView("home",model);
     }
+
+
 
     @GetMapping("/paciente")
     public ModelAndView consultasPorPaciente(@RequestParam(value="nome") String nome,ModelMap model){
@@ -162,6 +199,7 @@ public class ConsultaController {
         model.addAttribute("conteudo", "/consulta/list");
         return new ModelAndView("home", model);
     }
+
 
 
 

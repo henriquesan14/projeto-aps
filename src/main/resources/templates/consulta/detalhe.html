@@ -93,6 +93,8 @@
 
             <div>
                 <a th:if="${consulta.tipo == 'agendada' || consulta.tipo== 'retorno' }" class="btn btn-primary xx" th:href="@{/consultas/{id}/atender(id=${consulta.id})}"><i class="fas fa-arrow-right"></i><span>Atender</span></a>
+                <a th:if="${consulta.tipo == 'andamento' || consulta.tipo=='retorno' }" class="btn btn-primary xx" th:href="@{/consultas/{id}/finalizar(id=${consulta.id})}"><i class="fas fa-check-square"></i><span>Finalizar</span></a>
+                <a th:if="${consulta.tipo == 'andamento' }" class="btn btn-info xx" th:href="@{/consultas/{id}/retorno(id=${consulta.id})}"><i class="fas fa-calendar-alt"></i><span>Agendar Retorno</span></a>
                 <a class="btn btn-success xx" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i><span>Alterar</span></a>
                 <a class="btn btn-danger xx" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i><span>Excluir</span></a>
                 <a class="btn btn-default xx" th:href="@{/consultas}">Voltar</a>

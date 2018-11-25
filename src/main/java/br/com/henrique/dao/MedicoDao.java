@@ -17,4 +17,6 @@ public interface MedicoDao extends JpaRepository<Medico, Long> {
 
     @Query("from Consulta c where c.medico.id=?1")
     public List<Consulta> consultasPorMedico(Long id);
+
+
 }

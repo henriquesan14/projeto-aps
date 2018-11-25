@@ -17,4 +17,5 @@ public interface ConsultaService {
     List<Consulta> consultasDoDiaAndamento(LocalDate data);
     List<Consulta> consultasPorPaciente(String nome);
     List<Consulta> consultasPorMedico(String nome);
+    long verifica(Long id,LocalDate data,String turno);
 }

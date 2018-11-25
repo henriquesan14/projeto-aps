@@ -1,0 +1,41 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="corpo">
+    <div class = "panel panel-info col-md-12">
+        <div class = "panel-heading">
+            <h3 class = "panel-title text-center">Agendar Retorno</h3>
+        </div>
+
+        <div class = "panel-body">
+            <form th:action="@{/consultas/salvar/retorno}" th:method="${consulta.id} == null ? post : put" th:object="${consulta}">
+                <input id="id" type="hidden" th:field="*{id}"/>
+                <input class="form-control" id="paciente" type="hidden" name="paciente"   th:field="*{paciente}"/>
+                <input class="form-control" type="hidden"  id="hidden" name="medico" th:field="*{medico}"/>
+                <input class="form-control" type="hidden" id="tipo" name="tipo" readonly="readonly" th:field="*{tipo}"/>
+                <input class="form-control" type="hidden"  name="dataConsulta" id="dataConsulta" th:field="*{dataConsulta}"  />
+
+                <div class="form-group col-md-6">
+                    <label for="paciente">Turno</label>
+                    <select  th:field="*{turno}" class="form-control" id="turno" >
+                        <option value="manha">Manhã</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noite">Noite</option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}" class="label label-danger"></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="dataRetorno">Data de retorno</label>
+                    <input class="form-control"  type="date" name="dataRetorno" id="dataRetorno" th:field="*{dataRetorno}"  />
+                    <div th:if="${#fields.hasErrors('dataRetorno')}" th:errors="*{dataRetorno}" class="label label-danger"></div>
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="submit" class="btn  btn-success" value="Cadastrar" />
+                    <a class="btn btn-default" th:href="@{/consultas}">Cancelar</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</html>
