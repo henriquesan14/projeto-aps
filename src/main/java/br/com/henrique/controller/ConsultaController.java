@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,14 +28,8 @@ public class ConsultaController {
     @Autowired
     MedicoService medicoService;
 
-    @Autowired
-    ReceitaService receitaService;
 
-    @Autowired
-    MedicamentoService medicamentoService;
 
-    @Autowired
-    MedicamentoReceitaService medicamentoReceitaService;
 
     @GetMapping("/cadastro")
     public ModelAndView preSalvar(@ModelAttribute("consulta") Consulta consulta){
@@ -234,12 +227,8 @@ public class ConsultaController {
         return new ModelAndView("home", model);
     }
 
-    
 
-    @ModelAttribute("medicamentos")
-    public List<Medicamento> medicamentos(){
-        return medicamentoService.buscar();
-    }
+
 
     @ModelAttribute("pacientes")
     public List<Paciente> pacientes() {

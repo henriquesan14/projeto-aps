@@ -1,6 +1,7 @@
 package br.com.henrique.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class MedicamentoPorReceita {
@@ -9,6 +10,9 @@ public class MedicamentoPorReceita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Size(min= 5, max= 30)
+    @Column(nullable = false, length = 30)
     private String dosagem;
 
     @ManyToOne

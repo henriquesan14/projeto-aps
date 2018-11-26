@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="corpo">
+    <div th:if="${mensagem !=null}" class="col-md-12">
+        <span th:text="${mensagem}" class="label label-success"></span>
+    </div>
+    <div class = "panel panel-info col-md-12">
+        <div class = "panel-heading">
+            <h3 class = "panel-title text-center">Receita</h3>
+        </div>
+
+        <div class = "panel-body">
+
+            <div class="scroll-table">
+                <h3 class="label label-default">Medicamentos</h3>
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Dosagem</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="medicamento : ${medicamentos}">
+                        <td th:text="${medicamento.id}"></td>
+                        <td th:text="${medicamento.medicamento.nome}"></td>
+                        <td th:text="${medicamento.dosagem}"></td>
+                        <td><a class="btn btn-danger" th:href="@{/consultas/{idConsulta}/receitas/{idReceita}/remover/{idMedicamento}(idConsulta=${consulta.id},idReceita=${receita.id},idMedicamento=${medicamento.id})}"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class = "panel panel-info col-md-12">
+        <div class = "panel-heading">
+            <h3 class = "panel-title text-center">Incluir Novo medicamento na receita</h3>
+        </div>
+
+        <div class = "panel-body">
+
+                <form method="post" th:action="@{/consultas/{idConsulta}/receitas/{idReceita}/incluir(idConsulta=${consulta.id},idReceita=${receita.id})}" th:object="${medicamentoPorReceita}">
+                    <input th:field="*{receita}" class="form-control" type="hidden" name="id" id="id"   />
+                    <div class="form-group col-md-6">
+                        <label for="medicamento">Medicamento</label>
+                        <select th:field="*{medicamento}"  class="form-control" id="medicamento" >
+                            <option th:each="nomeMedicamento : ${nomesMedicamentos}" th:value="${nomeMedicamento.id}" th:text="${nomeMedicamento.nome}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dosagem">Dosagem</label>
+                        <input th:field="*{dosagem}" class="form-control" type="text" name="dosagem" id="dosagem"   />
+                        <div th:if="${#fields.hasErrors('dosagem')}" th:errors="*{dosagem}" class="label label-danger"></div>
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <input class="btn btn-primary" type="submit" value="Incluir"    />
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+</html>

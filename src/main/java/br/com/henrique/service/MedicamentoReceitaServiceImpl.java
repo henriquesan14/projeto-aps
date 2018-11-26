@@ -40,4 +40,14 @@ public class MedicamentoReceitaServiceImpl  implements MedicamentoReceitaService
     public void excluir(Long id) {
         dao.delete(id);
     }
+
+    @Override
+    public List<MedicamentoPorReceita> medicamentosPorReceita(Long id) {
+        return dao.medicamentosPorReceita(id);
+    }
+
+    @Override
+    public void apagaMedicamentosPorReceita(Long id) {
+        dao.apagaMedicamentosPorReceita(id);
+    }
 }

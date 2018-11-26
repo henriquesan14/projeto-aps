@@ -31,6 +31,8 @@
                         <td th:text="${receita.consulta.paciente.nome}"></td>
                         <td th:text="${receita.consulta.medico.nome}"></td>
                         <td th:text="${#temporals.format(receita.dataReceita, 'dd/MM/yyyy')}"></td>
+                        <td><a class="btn btn-primary" th:href="@{/consultas/{idConsulta}/receitas/{idReceita}(idConsulta=${consulta.id},idReceita=${receita.id})}"><i class="fas fa-list"></i></a></td>
+                        <td><a class="btn btn-danger" th:href="@{/consultas/{idConsulta}/receitas/{idReceita}/remover(idConsulta=${consulta.id},idReceita=${receita.id})}"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                     </tbody>
                 </table>

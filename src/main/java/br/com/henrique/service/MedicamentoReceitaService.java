@@ -11,4 +11,6 @@ public interface MedicamentoReceitaService {
     MedicamentoPorReceita buscarPorId(Long id);
     void editar(MedicamentoPorReceita medicamentoPorReceita);
     void excluir(Long id);
+    List<MedicamentoPorReceita> medicamentosPorReceita(Long id);
+    void apagaMedicamentosPorReceita(Long id);
 }

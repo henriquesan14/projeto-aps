@@ -28,7 +28,7 @@
 
                 <div class="form-group col-md-12">
                     <input type="submit" class="btn  btn-success" value="Cadastrar" />
-                    <a class="btn btn-default" th:href="@{/receitas}">Cancelar</a>
+                    <a class="btn btn-default" th:href="@{/consultas/{idConsulta}/receitas(idConsulta=${consulta.id})}">Cancelar</a>
                 </div>
             </form>
 
