@@ -29,6 +29,12 @@
                     </tr>
                     </tbody>
                 </table>
+                <div th:if="${#lists.isEmpty(medicamentos)}">
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        0 medicamentos!
+                    </div>
+                </div>
 
             </div>
         </div>
