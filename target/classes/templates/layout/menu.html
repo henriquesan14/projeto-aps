@@ -43,6 +43,13 @@
                     </ul> <!--fim fim submenu-->
                 </li>
 
+                <li class="abrir-menu"><a href="#"><i class="fas fa-pills"></i><span>Medicamentos</span></a>
+                    <ul class="hide-menu">
+                        <li><a th:href="@{/medicamentos/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
+                        <li><a th:href="@{/medicamentos}"><i class="fas fa-list-alt"></i>Listar</a></li>
+                    </ul> <!--fim fim submenu-->
+                </li>
+
 
                 <li class="visible-xs">
                     <form th:action="@{/logout}" method="post">

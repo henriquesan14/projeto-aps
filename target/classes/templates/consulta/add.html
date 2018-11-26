@@ -12,6 +12,7 @@
         <div class = "panel-body">
             <form th:action="@{/consultas/salvar}" th:method="${consulta.id} == null ? post : put" th:object="${consulta}">
                 <input id="id" type="hidden" th:field="*{id}"/>
+                <input id="hora" type="hidden" th:field="*{hora}"/>
                 <div class="form-group col-md-6">
                     <label for="paciente">Paciente</label>
                     <select th:field="*{paciente}" class="form-control" id="paciente" >
@@ -56,6 +57,12 @@
                     <label for="dataRetorno">Data de retorno</label>
                     <input class="form-control"  type="date" name="dataRetorno" id="dataRetorno" th:field="*{dataRetorno}"  />
                     <div th:if="${#fields.hasErrors('dataRetorno')}" th:errors="*{dataRetorno}" class="label label-danger"></div>
+                </div>
+
+                <div class="form-group col-md-6" th:if="${consulta.dataConsulta} != null">
+                    <label for="diagnostico">Diagnóstico</label>
+                    <textarea class="form-control"  type="text" name="diagnostico" id="diagnostico" th:field="*{diagnostico}" ></textarea>
+                    <div th:if="${#fields.hasErrors('diagnostico')}" th:errors="*{diagnostico}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-12">
                     <input type="submit" class="btn  btn-success" value="Cadastrar" />

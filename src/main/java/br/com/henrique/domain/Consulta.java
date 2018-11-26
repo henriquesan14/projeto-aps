@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 public class Consulta {
@@ -37,6 +39,15 @@ public class Consulta {
     @JoinColumn(name="id_medico")
     @NotNull(message = "Informe o médico")
     private Medico medico;
+
+
+    private LocalTime hora;
+
+    @OneToMany(mappedBy = "consulta",cascade = CascadeType.ALL)
+    private List<Receita> receitas;
+
+
+    private String diagnostico;
 
     public Long getId() {
         return id;
@@ -92,5 +103,29 @@ public class Consulta {
 
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
+
+    public List<Receita> getReceitas() {
+        return receitas;
+    }
+
+    public void setReceitas(List<Receita> receitas) {
+        this.receitas = receitas;
     }
 }

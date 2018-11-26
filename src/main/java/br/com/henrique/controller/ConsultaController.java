@@ -1,11 +1,7 @@
 package br.com.henrique.controller;
 
-import br.com.henrique.domain.Consulta;
-import br.com.henrique.domain.Medico;
-import br.com.henrique.domain.Paciente;
-import br.com.henrique.service.ConsultaService;
-import br.com.henrique.service.MedicoService;
-import br.com.henrique.service.PacienteService;
+import br.com.henrique.domain.*;
+import br.com.henrique.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,6 +28,15 @@ public class ConsultaController {
 
     @Autowired
     MedicoService medicoService;
+
+    @Autowired
+    ReceitaService receitaService;
+
+    @Autowired
+    MedicamentoService medicamentoService;
+
+    @Autowired
+    MedicamentoReceitaService medicamentoReceitaService;
 
     @GetMapping("/cadastro")
     public ModelAndView preSalvar(@ModelAttribute("consulta") Consulta consulta){
@@ -129,6 +136,7 @@ public class ConsultaController {
     public ModelAndView atender(@PathVariable Long id, RedirectAttributes attr){
         Consulta consulta=consultaService.buscarPorId(id);
         consulta.setTipo("andamento");
+        consulta.setHora(LocalTime.now());
         consultaService.salvar(consulta);
         attr.addFlashAttribute("mensagem", "Consulta movida para atendimento");
         return new ModelAndView("redirect:/consultas");
@@ -226,8 +234,12 @@ public class ConsultaController {
         return new ModelAndView("home", model);
     }
 
+    
 
-
+    @ModelAttribute("medicamentos")
+    public List<Medicamento> medicamentos(){
+        return medicamentoService.buscar();
+    }
 
     @ModelAttribute("pacientes")
     public List<Paciente> pacientes() {

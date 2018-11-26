@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="corpo">
+    <div th:if="${mensagem !=null}" class="col-md-12">
+        <span th:text="${mensagem}" class="label label-success"></span>
+    </div>
+
+    <div class = "panel panel-info col-md-12">
+        <div class = "panel-heading">
+            <h3 class = "panel-title text-center">Receitas</h3>
+        </div>
+
+        <div class = "panel-body">
+            <div>
+                <a class="btn btn-primary" th:href="@{/consultas/{idConsulta}/receitas/nova(idConsulta=${consulta.id})}">Nova receita</a>
+            </div>
+            <div class="scroll-table">
+                <table class="table  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID Receita</th>
+                        <th>ID Consulta</th>
+                        <th>Paciente</th>
+                        <th>Medico</th>
+                        <th>Data</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="receita : ${receitas}" >
+                        <td th:text="${receita.id}"></td>
+                        <td th:text="${receita.consulta.id}"></td>
+                        <td th:text="${receita.consulta.paciente.nome}"></td>
+                        <td th:text="${receita.consulta.medico.nome}"></td>
+                        <td th:text="${#temporals.format(receita.dataReceita, 'dd/MM/yyyy')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:if="${#lists.isEmpty(receitas)}">
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        0 receitas!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> <!--fim panel1 -->
+
+
+
+</div> <!--fim div corpo-->
+</html>
