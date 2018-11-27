@@ -135,9 +135,16 @@ public class Consulta {
         boolean data=false;
         boolean tipo=false;
         boolean ok=false;
-        if(this.dataConsulta.equals(date) || this.dataRetorno.equals(date)){
-            data = true;
+        if(this.dataRetorno !=null){
+            if(this.dataConsulta.equals(date) || this.dataRetorno.equals(date)){
+                data = true;
+            }
+        }else{
+            if(this.dataConsulta.equals(date)){
+                data = true;
+            }
         }
+
         if(this.tipo.equals("agendada") || this.tipo.equals("retorno")){
             tipo=true;
         }
