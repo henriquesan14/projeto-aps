@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ConsultaDao extends JpaRepository<Consulta, Long> {
 
-    @Query("select c from Consulta c where c.dataConsulta=?1 and c.tipo='agendada' or c.tipo='retorno'")
+    @Query("select c from Consulta c where c.dataConsulta=?1 and c.tipo in('agendada','retorno')")
     public List<Consulta> consultasDoDia(LocalDate data);
 
     @Query("select c from Consulta c where c.dataConsulta=?1 and c.medico.nome like ?2 and c.tipo in('agendada','retorno')")
@@ -27,6 +27,9 @@ public interface ConsultaDao extends JpaRepository<Consulta, Long> {
 
     @Query("from Consulta c where c.medico.nome like ?1")
     public List<Consulta> consultasPorMedico(String nome);
+
+    @Query("select count(c) from Consulta c where c.medico.id=?1 and c.tipo='andamento'")
+    public long verificaOcupado(Long id);
 
     @Query("select count(c) from Consulta c where c.medico.id=?1 and c.dataConsulta=?2 and c.turno=?3")
     public long verifica(Long id,LocalDate data,String turno);

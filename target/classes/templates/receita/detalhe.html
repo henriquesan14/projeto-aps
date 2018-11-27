@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <div th:fragment="corpo">
     <div th:if="${mensagem !=null}" class="col-md-12">
         <span th:text="${mensagem}" class="label label-success"></span>
@@ -35,12 +36,13 @@
                         0 medicamentos!
                     </div>
                 </div>
+                <a class="btn btn-default" th:href="@{/consultas/{idConsulta}/receitas(idConsulta=${consulta.id})}">Voltar</a>
 
             </div>
         </div>
     </div>
 
-    <div class = "panel panel-info col-md-12">
+    <div sec:authorize="hasRole('MEDICO')" class = "panel panel-info col-md-12">
         <div class = "panel-heading">
             <h3 class = "panel-title text-center">Incluir Novo medicamento na receita</h3>
         </div>

@@ -1,5 +1,6 @@
 package br.com.henrique.domain;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -127,5 +128,22 @@ public class Consulta {
 
     public void setReceitas(List<Receita> receitas) {
         this.receitas = receitas;
+    }
+
+    public boolean verificaAtender(){
+        LocalDate date=LocalDate.now();
+        boolean data=false;
+        boolean tipo=false;
+        boolean ok=false;
+        if(this.dataConsulta.equals(date) || this.dataRetorno.equals(date)){
+            data = true;
+        }
+        if(this.tipo.equals("agendada") || this.tipo.equals("retorno")){
+            tipo=true;
+        }
+        if(data && tipo){
+            return true;
+        }
+        return false;
     }
 }

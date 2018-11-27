@@ -13,6 +13,7 @@
         <div class = "panel-body">
             <div sec:authorize="hasRole('MEDICO')">
                 <a class="btn btn-primary" th:href="@{/consultas/{idConsulta}/receitas/nova(idConsulta=${consulta.id})}">Nova receita</a>
+                <a class="btn btn-default" th:href="@{/consultas/{idConsulta}/detalhes(idConsulta=${consulta.id})}">Voltar</a>
             </div>
             <div class="scroll-table">
                 <table class="table  table-hover">

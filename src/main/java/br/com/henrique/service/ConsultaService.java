@@ -23,4 +23,5 @@ public interface ConsultaService {
     long consultasHoje(LocalDate data);
     long consultasAgendadasMes(Integer mes);
     long consultasRealizadasMes(Integer mes);
+    long verificaOcupado(Long id);
 }

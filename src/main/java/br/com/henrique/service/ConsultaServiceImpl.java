@@ -97,5 +97,10 @@ public class ConsultaServiceImpl implements ConsultaService {
         return consultaDao.consultasRealizadasMes(mes);
     }
 
+    @Override
+    public long verificaOcupado(Long id) {
+        return consultaDao.verificaOcupado(id);
+    }
+
 
 }

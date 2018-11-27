@@ -117,6 +117,8 @@ public class ConsultaController {
         Long idPaciente = consulta.getPaciente().getId();
         Long idMedico = consulta.getMedico().getId();
         LocalDate date=LocalDate.now();
+        boolean ok=consulta.verificaAtender();
+        model.addAttribute("ok",ok);
         model.addAttribute("consulta",consulta);
         model.addAttribute("paciente",pacienteService.buscarPorId(idPaciente));
         model.addAttribute("medico",medicoService.buscarPorId(idMedico));
@@ -128,6 +130,10 @@ public class ConsultaController {
     @GetMapping("/{id}/atender")
     public ModelAndView atender(@PathVariable Long id, RedirectAttributes attr){
         Consulta consulta=consultaService.buscarPorId(id);
+        if(consultaService.verificaOcupado(consulta.getMedico().getId())>=1){
+            attr.addFlashAttribute("mensagem","Médico já possui consulta em andamento");
+            return new ModelAndView("redirect:/consultas/{id}/detalhes");
+        }
         consulta.setTipo("andamento");
         consulta.setHora(LocalTime.now());
         consultaService.salvar(consulta);
@@ -180,6 +186,9 @@ public class ConsultaController {
     @GetMapping("/hoje/medico")
     public ModelAndView consultasHojePorMedico(@RequestParam(value="nome") String nome, ModelMap model){
         LocalDate date= LocalDate.now();
+        if(nome == null){
+            return new ModelAndView("redirect:/consultas/hoje");
+        }
         model.addAttribute("consultasDia",consultaService.consultasDoDiaPorMedico(date,nome));
         model.addAttribute("conteudo","consulta/consultahoje");
         return new ModelAndView("home",model);
@@ -228,7 +237,10 @@ public class ConsultaController {
     }
 
 
-
+    @ModelAttribute("dataHoje")
+    public LocalDate dataHoje(){
+        return LocalDate.now();
+    }
 
     @ModelAttribute("pacientes")
     public List<Paciente> pacientes() {
