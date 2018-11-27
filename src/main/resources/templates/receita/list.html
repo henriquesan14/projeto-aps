@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <div th:fragment="corpo">
     <div th:if="${mensagem !=null}" class="col-md-12">
         <span th:text="${mensagem}" class="label label-success"></span>
@@ -10,7 +11,7 @@
         </div>
 
         <div class = "panel-body">
-            <div>
+            <div sec:authorize="hasRole('MEDICO')">
                 <a class="btn btn-primary" th:href="@{/consultas/{idConsulta}/receitas/nova(idConsulta=${consulta.id})}">Nova receita</a>
             </div>
             <div class="scroll-table">

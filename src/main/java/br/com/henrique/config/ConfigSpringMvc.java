@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 
@@ -16,6 +17,7 @@ public class ConfigSpringMvc extends WebMvcConfigurerAdapter {
     public SpringTemplateEngine templateEngine(SpringResourceTemplateResolver resolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.addDialect(new Java8TimeDialect());
+        templateEngine.addDialect(new SpringSecurityDialect());
         templateEngine.setTemplateResolver(resolver);
         return templateEngine;
     }

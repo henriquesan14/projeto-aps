@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
     <div th:fragment="menu">
         <div class="menu menu-open" id="sidebar" >
@@ -21,14 +22,14 @@
                     </ul> <!--fim fim submenu-->
                 </li>
 
-                <li class="abrir-menu"><a href="#"><i class="fas fa-user"></i><span>Pacientes</span></a>
+                <li sec:authorize="hasRole('ADMIN')" class="abrir-menu"><a href="#"><i class="fas fa-user"></i><span>Pacientes</span></a>
                     <ul class="hide-menu">
                         <li><a th:href="@{/pacientes/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
                         <li><a th:href="@{/pacientes}"><i class="fas fa-list-alt"></i>Listar</a></li>
                     </ul> <!--fim submenu-->
                 </li>
 
-                <li class="abrir-menu"><a href="#"><i class="fas fa-user-md"></i><span>Médicos</span></a>
+                <li  sec:authorize="hasRole('ADMIN')" class="abrir-menu"><a href="#"><i class="fas fa-user-md"></i><span>Médicos</span></a>
                     <ul class="hide-menu">
                         <li><a th:href="@{/medicos/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
                         <li><a th:href="@{/medicos}"><i class="fas fa-list-alt"></i>Listar</a></li>
@@ -36,14 +37,14 @@
                 </li>
 
 
-                <li class="abrir-menu"><a href="#"><i class="fas fa-glasses"></i><span>Especialidades</span></a>
+                <li sec:authorize="hasRole('ADMIN')" class="abrir-menu"><a href="#"><i class="fas fa-glasses"></i><span>Especialidades</span></a>
                     <ul class="hide-menu">
                         <li><a th:href="@{/especialidades/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
                         <li><a th:href="@{/especialidades}"><i class="fas fa-list-alt"></i>Listar</a></li>
                     </ul> <!--fim fim submenu-->
                 </li>
 
-                <li class="abrir-menu"><a href="#"><i class="fas fa-pills"></i><span>Medicamentos</span></a>
+                <li sec:authorize="hasRole('ADMIN')" class="abrir-menu"><a href="#"><i class="fas fa-pills"></i><span>Medicamentos</span></a>
                     <ul class="hide-menu">
                         <li><a th:href="@{/medicamentos/cadastro}"><i class="fas fa-plus-square"></i>Cadastro</a></li>
                         <li><a th:href="@{/medicamentos}"><i class="fas fa-list-alt"></i>Listar</a></li>
