@@ -101,7 +101,7 @@
                 <a sec:authorize="hasRole('ADMIN')"  th:if="${ok==true}" class="btn btn-primary xx" th:href="@{/consultas/{id}/atender(id=${consulta.id})}"><i class="fas fa-arrow-right"></i><span>Atender</span></a>
                 <a th:if="${consulta.tipo == 'andamento' || consulta.tipo=='retorno' || consulta.tipo=='finalizada' }" class="btn btn-primary xx" th:href="@{/consultas/{idConsulta}/receitas(idConsulta=${consulta.id})}"><i class="fas fa-pills"></i><span>Receitas</span></a>
                 <a th:if="${consulta.tipo == 'andamento' || consulta.tipo=='retorno' }" class="btn btn-success xx" th:href="@{/consultas/{id}/finalizar(id=${consulta.id})}"><i class="fas fa-calendar-check"></i><span>Finalizar</span></a>
-                <a th:if="${consulta.tipo == 'andamento' }" class="btn btn-primary xx" th:href="@{/consultas/{id}/retorno(id=${consulta.id})}"><i class="fas fa-calendar-alt"></i><span>Agendar Retorno</span></a>
+                <a th:if="${consulta.tipo == 'andamento' and consulta.dataRetorno == null}" class="btn btn-primary xx" th:href="@{/consultas/{id}/retorno(id=${consulta.id})}"><i class="fas fa-calendar-alt"></i><span>Agendar Retorno</span></a>
                 <a sec:authorize="hasRole('ADMIN')" class="btn btn-success xx" th:href="@{/consultas/{id}/editar(id=${consulta.id})}"><i class="fas fa-pencil-alt"></i><span>Alterar</span></a>
                 <a sec:authorize="hasRole('ADMIN')" class="btn btn-danger xx" th:href="@{/consultas/{id}/remover(id=${consulta.id})}"><i class="fas fa-trash-alt"></i><span>Excluir</span></a>
                 <a class="btn btn-default xx" th:href="@{/consultas}">Voltar</a>
