@@ -119,7 +119,11 @@ public class ReceitaController {
     public ModelAndView imprimir(@PathVariable("idReceita") Long id){
         Receita receita=receitaService.buscarPorId(id);
         Document document=relatorioService.gerarPdf(receita);
-
+        try {
+            Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c", "start", "C://Users//ricog//IdeaProjects//projeto-aps//relatorios//receita"+id+".pdf"});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return new ModelAndView("redirect:/consultas/{idConsulta}/receitas/{idReceita}");
     }
 
