@@ -120,7 +120,7 @@ public class ReceitaController {
         Receita receita=receitaService.buscarPorId(id);
         Document document=relatorioService.gerarPdf(receita);
         try {
-            Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c", "start", "C://Users//ricog//IdeaProjects//projeto-aps//relatorios//receita"+id+".pdf"});
+            Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c", "start", "relatorios//receita"+id+".pdf"});
         } catch (IOException e) {
             e.printStackTrace();
         }
