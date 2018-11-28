@@ -36,6 +36,7 @@
                         0 medicamentos!
                     </div>
                 </div>
+                <a th:href="@{/consultas/{idConsulta}/receitas/{idReceita}/imprimir(idConsulta=${consulta.id},idReceita=${receita.id})}" th:if="${medicamentos != null}"  class="btn btn-primary"><i class="fas fa-print"></i><span>Imprimir</span></a>
                 <a class="btn btn-default" th:href="@{/consultas/{idConsulta}/receitas(idConsulta=${consulta.id})}">Voltar</a>
 
             </div>

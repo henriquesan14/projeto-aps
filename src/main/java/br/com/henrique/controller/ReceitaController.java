@@ -4,19 +4,27 @@ package br.com.henrique.controller;
 import br.com.henrique.domain.Medicamento;
 import br.com.henrique.domain.MedicamentoPorReceita;
 import br.com.henrique.domain.Receita;
-import br.com.henrique.service.ConsultaService;
-import br.com.henrique.service.MedicamentoReceitaService;
-import br.com.henrique.service.MedicamentoService;
-import br.com.henrique.service.ReceitaService;
+import br.com.henrique.service.*;
+import com.itextpdf.text.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.awt.*;
+import java.io.*;
+import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,6 +43,9 @@ public class ReceitaController {
 
     @Autowired
     MedicamentoService medicamento2Service;
+
+    @Autowired
+    RelatorioService relatorioService;
 
     @GetMapping
     public ModelAndView receita(@PathVariable("idConsulta") Long id, ModelMap model){
@@ -102,6 +113,14 @@ public class ReceitaController {
         attr.addFlashAttribute("mensagem", "Medicamento incluido com sucesso.");
         return new ModelAndView("redirect:/consultas/{idConsulta}/receitas/{idReceita}");
 
+    }
+
+    @GetMapping("{idReceita}/imprimir")
+    public ModelAndView imprimir(@PathVariable("idReceita") Long id){
+        Receita receita=receitaService.buscarPorId(id);
+        Document document=relatorioService.gerarPdf(receita);
+
+        return new ModelAndView("redirect:/consultas/{idConsulta}/receitas/{idReceita}");
     }
 
 

@@ -15,7 +15,9 @@
             <div class="form-group col-md-4">
                 <form th:action="@{/consultas/andamento/medico}" method="get">
                     <label>Pesquisa por Médico</label>
-                    <input class="form-control" type="text" name="nome" />
+                    <select name="nome" class="form-control">
+                        <option th:each="medico : ${medicos}" th:text="${medico.nome}" th:value="${medico.nome}"></option>
+                    </select>
                     <input class="btn btn-primary pesq" type="submit" value="Pesquisar" />
                 </form>
             </div>
