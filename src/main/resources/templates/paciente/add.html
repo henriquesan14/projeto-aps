@@ -17,12 +17,12 @@
 
                     <div class="form-group col-md-6">
                         <label for="rg">RG</label>
-                        <input class="form-control" type="text" name="rg" id="rg" minlength="9" th:field="*{rg}" />
+                        <input maxlength="14" class="form-control" type="text" name="rg" id="rg" minlength="9" th:field="*{rg}" />
                         <div th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="cpf">CPF</label>
-                        <input class="form-control" type="text" name="cpf"  id="cpf" th:field="*{cpf}" />
+                        <input maxlength="11" class="form-control" type="text" name="cpf"  id="cpf" th:field="*{cpf}" />
                         <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
@@ -31,8 +31,8 @@
                         <div th:if="${#fields.hasErrors('dtNascimento')}" th:errors="*{dtNascimento}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="telefone">Telefone</label>
-                        <input class="form-control" type="tel" name="telefone" id="telefone" th:field="*{telefone}"  />
+                        <label  for="telefone">Telefone</label>
+                        <input maxlength="11" class="form-control" type="tel" name="telefone" id="telefone" th:field="*{telefone}"  />
                         <div th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="label label-danger"></div>
                     </div>
                     <div class="form-group col-md-12">

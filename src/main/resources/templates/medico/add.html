@@ -17,12 +17,12 @@
 
                 <div class="form-group col-md-6">
                     <label for="crm">CRM</label>
-                    <input class="form-control" type="text" name="rcrm" id="crm"  th:field="*{crm}" />
+                    <input class="form-control" type="text" name="crm" id="crm"  th:field="*{crm}" />
                     <div th:if="${#fields.hasErrors('crm')}" th:errors="*{crm}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="cpf">CPF</label>
-                    <input class="form-control" type="text" name="cpf"  id="cpf" th:field="*{cpf}" />
+                    <input maxlength="11" class="form-control" type="text" name="cpf"  id="cpf" th:field="*{cpf}" />
                     <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-6">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="telefone">Telefone</label>
-                    <input class="form-control" type="tel" name="telefone" id="telefone" th:field="*{telefone}"  />
+                    <input maxlength="11" class="form-control" type="tel" name="telefone" id="telefone" th:field="*{telefone}"  />
                     <div th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="label label-danger"></div>
                 </div>
                 <div class="form-group col-md-12">

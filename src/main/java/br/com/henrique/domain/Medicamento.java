@@ -13,8 +13,8 @@ public class Medicamento {
     private Long id;
 
 
-    @Size(min= 5, max= 30)
-    @Column(nullable = false, length = 30)
+    @Size(min= 5, max= 50)
+    @Column(nullable = false, length = 50)
     private String nome;
 
     private String descricao;

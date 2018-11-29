@@ -4,6 +4,9 @@
     <div th:if="${mensagem !=null}" class="col-md-12">
         <span th:text="${mensagem}" class="label label-success"></span>
     </div>
+    <div th:if="${erro !=null}" class="col-md-12">
+        <span th:text="${erro}" class="label label-danger"></span>
+    </div>
     <div class = "panel panel-info col-md-12">
         <div class = "panel-heading">
             <h3 class = "panel-title text-center">Receita</h3>

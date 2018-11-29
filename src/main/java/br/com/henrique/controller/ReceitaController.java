@@ -106,7 +106,7 @@ public class ReceitaController {
     @PostMapping("/{idReceita}/incluir")
     public ModelAndView incluir(@Valid @ModelAttribute("medicamentoPorReceita") MedicamentoPorReceita medicamentoPorReceita,BindingResult result,RedirectAttributes attr){
         if(result.hasErrors()){
-            attr.addFlashAttribute("mensagem","Error ao incluir medicamento.");
+            attr.addFlashAttribute("erro","Dados inválidos.");
             return new ModelAndView ("redirect:/consultas/{idConsulta}/receitas/{idReceita}");
         }
         medicamentoService.salvar(medicamentoPorReceita);

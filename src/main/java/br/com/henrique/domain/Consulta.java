@@ -48,7 +48,6 @@ public class Consulta {
     private List<Receita> receitas;
 
 
-    private String diagnostico;
 
     public Long getId() {
         return id;
@@ -114,13 +113,6 @@ public class Consulta {
         this.hora = hora;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
-    }
-
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
-    }
 
     public List<Receita> getReceitas() {
         return receitas;

@@ -53,11 +53,6 @@
                     <div th:if="${#fields.hasErrors('dataRetorno')}" th:errors="*{dataRetorno}" class="label label-danger"></div>
                 </div>
 
-                <div class="form-group col-md-6" th:if="${consulta.dataConsulta} != null">
-                    <label for="diagnostico">Diagnóstico</label>
-                    <textarea class="form-control"  type="text" name="diagnostico" id="diagnostico" th:field="*{diagnostico}" ></textarea>
-                    <div th:if="${#fields.hasErrors('diagnostico')}" th:errors="*{diagnostico}" class="label label-danger"></div>
-                </div>
                 <div class="form-group col-md-12">
                     <input type="submit" class="btn  btn-success" value="Cadastrar" />
                     <a class="btn btn-default" th:href="@{/consultas}">Cancelar</a>

@@ -16,8 +16,8 @@ public class Medico {
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Size(min= 4, max= 10)
-    @Column(nullable = false, length = 10)
+    @Size(min= 4, max= 50)
+    @Column(nullable = false, length = 50)
     private String crm;
 
     @Size(min= 11, max= 11)

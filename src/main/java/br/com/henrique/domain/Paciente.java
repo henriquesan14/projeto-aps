@@ -21,8 +21,8 @@ public class Paciente {
     private String nome;
 
 
-    @Size(min= 9, max= 12)
-    @Column(nullable = false, length = 12)
+    @Size(min= 9, max= 14)
+    @Column(nullable = false, length = 14)
     private String rg;
 
     @Size(min= 11, max= 11)
