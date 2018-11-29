@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @Transactional
@@ -37,7 +39,9 @@ public class RelatorioServiceImpl implements RelatorioService {
             title.setAlignment(Element.ALIGN_CENTER);
             Paragraph p1=new Paragraph("Médico:  "+r.getConsulta().getMedico().getNome()+"               "+"Paciente: "+r.getConsulta().getPaciente().getNome(),FontFactory.getFont(FontFactory.TIMES_BOLD,12));
             p1.setAlignment(Element.ALIGN_CENTER);
-            Paragraph p2=new Paragraph("Receita nº :"+r.getId()+"                                    "+"Data da Receita:  "+r.getDataReceita(),FontFactory.getFont(FontFactory.TIMES_BOLD,12));
+            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String data= r.getDataReceita().format(formatter);
+            Paragraph p2=new Paragraph("Receita nº "+r.getId()+"                                        "+"Data da Receita:  "+data,FontFactory.getFont(FontFactory.TIMES_BOLD,12));
             p2.setAlignment(Element.ALIGN_CENTER);
             Paragraph p3=new Paragraph("PRESCRIÇÃO: ",FontFactory.getFont(FontFactory.TIMES_BOLD,12));
             p3.setAlignment(Element.ALIGN_CENTER);
@@ -49,12 +53,14 @@ public class RelatorioServiceImpl implements RelatorioService {
             document.add(p3);
             document.add(new Paragraph(" "));
             PdfPTable table=new PdfPTable(2);
-            PdfPCell cell=new PdfPCell(new Paragraph("Medicamentos"));
+            PdfPCell cell=new PdfPCell(new Paragraph("Medicamentos",FontFactory.getFont(FontFactory.TIMES_BOLD,13)));
             cell.setColspan(3);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
-            table.addCell("Nome");
-            table.addCell("Dosagem");
+            PdfPCell cell1=new PdfPCell(new Paragraph("Nome",FontFactory.getFont(FontFactory.TIMES_BOLD,13)));
+            PdfPCell cell2=new PdfPCell(new Paragraph("Dosagem",FontFactory.getFont(FontFactory.TIMES_BOLD,13)));
+            table.addCell(cell1);
+            table.addCell(cell2);
             for(MedicamentoPorReceita m: r.getMedicamentos()){
                 table.addCell(m.getMedicamento().getNome());
                 table.addCell(m.getDosagem());

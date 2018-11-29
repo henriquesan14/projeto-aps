@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="medicamento : ${medicamentos}">
-                        <td th:text="${medicamento.id}"></td>
+                        <td th:text="${medicamento.medicamento.id}"></td>
                         <td th:text="${medicamento.medicamento.nome}"></td>
                         <td th:text="${medicamento.dosagem}"></td>
                         <td><a class="btn btn-danger" th:href="@{/consultas/{idConsulta}/receitas/{idReceita}/remover/{idMedicamento}(idConsulta=${consulta.id},idReceita=${receita.id},idMedicamento=${medicamento.id})}"><i class="fas fa-trash-alt"></i></a></td>

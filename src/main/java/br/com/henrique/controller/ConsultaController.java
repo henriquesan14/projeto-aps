@@ -41,11 +41,12 @@ public class ConsultaController {
         if (result.hasErrors()) {
             return new ModelAndView("home","conteudo","consulta/add");
         }
+
         if(consultaService.verifica(consulta.getMedico().getId(),consulta.getDataConsulta(),consulta.getTurno()) >10){
             model.addAttribute("mensagem","Limite de consultas por turno e médico excedida nesta data.");
             return new ModelAndView("home","conteudo","consulta/add");
         }
-
+        consulta.setTipo("agendada");
         consultaService.salvar(consulta);
         attr.addFlashAttribute("mensagem", "Consulta cadastrada com sucesso.");
         return new ModelAndView("redirect:/consultas");

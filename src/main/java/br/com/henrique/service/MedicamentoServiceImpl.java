@@ -45,6 +45,6 @@ public class MedicamentoServiceImpl implements MedicamentoService {
     @Transactional(readOnly = true)
     @Override
     public List<Medicamento> buscarPorNome(String nome) {
-        return dao.findByName(nome);
+        return dao.findByName("%"+nome+"%");
     }
 }
