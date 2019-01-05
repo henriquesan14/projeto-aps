@@ -25,7 +25,7 @@
 
 * CRUD de especialidades, médicos, pacientes, medicamentos.
 * Agendamento de consultas.
-* Consultas agendadas e em andamento do dia vigente.
+* Consultas agendadas e em andamento do dia atual.
 * Opção de Atender consulta, Agendar retorno, Finalizar consulta, Gerenciar receitas.
 * Impressão de receitas.
 * Tela inicial com quantidade de consultas do dia, do mês atual, etc.
