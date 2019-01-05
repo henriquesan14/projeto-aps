@@ -2,6 +2,7 @@
 > Sistema de Clínica Médica para gerenciamento de pacientes, médicos, consultas, medicamentos e receitas.
 ### Tecnologias usadas: 
 >Back-end
+* MySQL
 * Java
 * Spring Boot
 * Spring Data Jpa
